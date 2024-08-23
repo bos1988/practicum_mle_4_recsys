@@ -1,21 +1,16 @@
-import logging
+import os
 import sys
 import pandas as pd
 
+# относительный импорт:
+def get_root(n=1):
+    if n == 0:
+        return os.path.realpath(__file__)
+    else:
+        return os.path.dirname(get_root(n-1))
+sys.path.append(get_root(2))
+from core.logger import logger
 
-# Добавляем логгирование
-def add_logger():
-    msg_format = "%(asctime)s | %(levelname)s | %(filename)s:%(funcName)s:%(lineno)d - %(message)s"
-    logger = logging.getLogger()
-    formatter = logging.Formatter(msg_format)
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(formatter)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
-    return logger
-
-
-logger = add_logger()
 
 class Recommendations:
 
@@ -68,6 +63,7 @@ class Recommendations:
 
 
 if __name__ == "__main__":
+
     rec_store = Recommendations()
 
     rec_store.load(
