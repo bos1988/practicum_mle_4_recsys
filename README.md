@@ -81,3 +81,24 @@ jupyter lab --ip=0.0.0.0 --no-browser
 
 После выполнения подготовки данных, их сохранения, дальнейшую работу предлагается вести в ноутбуке `main_offline.ipynb`.
 
+
+## Запуск сервисов
+
+Оффлайн рекомендации
+
+```bash
+$ uvicorn recommendation_service:app 
+```
+
+Похожие события
+
+```bash
+$ uvicorn features_service:app --port 8010
+```
+
+Сервис собитий
+
+```bash
+$ uvicorn events_service:app --port 8020
+```
+
